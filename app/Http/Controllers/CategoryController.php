@@ -31,9 +31,13 @@ class CategoryController extends Controller
 
     public function edit($id = null)
     {
-        $category = Category::find($id);
-        return view('category/edit')
-            ->with('category', $category);
+        if ($id) {
+            $category = Category::where('id', $id)->first();
+            return view('category/edit')
+                ->with('category', $category);
+        } else {
+            return view('category/add');
+        }
     }
 
     public function update(Request $request)
@@ -69,4 +73,42 @@ class CategoryController extends Controller
         ->with('ok' , 'true')
         ->with('msg' ,'บันทึกข้อมูลเรียบร้อยแล้ว');
     }
+
+    public function insert(Request $request) {
+        $rules = array(
+            'name' => 'required',
+        );
+        $messages = array(
+            'required' => 'กรุณากรอกข้อมูล :attribute ให้ครบถ้วน', 
+        );
+
+        $temp = array(
+            'name' => $request->name, 
+        );
+
+        $validator = Validator::make($temp, $rules, $messages);
+        if ($validator->fails()) {
+            return redirect('category/edit')
+            ->withErrors($validator)
+            ->withInput();
+        }
+
+        $category = new Category();
+        $category->name = $request->name;
+        $category->save();
+
+        return redirect('category')
+        ->with('ok' , 'true')
+        ->with('msg' ,'บันทึกข้อมูลเรียบร้อยแล้ว');
+    }
+
+    public function remove ($id){
+        Category::find($id)->delete();
+        return redirect('category')
+        ->with('ok' , 'true')
+        ->with('msg' ,'ลบข้อมูลเรียบร้อยแล้ว');
+    }
+    
+
+
 }

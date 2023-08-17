@@ -1,11 +1,12 @@
 @extends('layouts.master') {{-- การสืบทอดโฟลเดอร์ --}}
 @section('title') BikeShop | แก้ไขข้อมูลสินค้า @stop {{-- หัวข้อ title html --}}
 @section('content')
-    {!! Form::model($product, [
-        'action' => 'App\Http\Controllers\ProductController@update',
+    {!! Form::open(array (
+        'action' => 'App\Http\Controllers\ProductController@insert',
         'method' => 'post',
         'enctype' => 'multipart/form-data',
-    ]) !!}
+    )) !!}
+
     <h1>แก้ไขข้อมูลสินค้า</h1>
     <ul class="breadcrumb">
         <li><a href="{{ URL::to('product') }}">หน้าแรก</a></li>
@@ -29,43 +30,38 @@
         </div>
 
         <div class="panel-body">
-            <input type="hidden" name="id" value="{{ $product->id }}">
             <table>
                 <tr>
-                    <td>{{ Form::label('code', 'รหัสสินค้า') }} </td>
-                    <td>{{ Form::text('code', $product->code, ['class' => 'form-control']) }}</td>
+                    <td>{{ Form::label('code', 'รหัสสินค้า ') }}</td>
+                    <td>{{ Form::text('code', Request::old('code'), ['class' => 'form-control']) }}</td>
                 </tr>
 
                 <tr>
                     <td>{{ Form::label('name', 'ชื่อสินค้า ') }}</td>
-                    <td>{{ Form::text('name', $product->name, ['class' => 'form-control']) }}</td>
+                    <td>{{ Form::text('name', Request::old('name'), ['class' => 'form-control']) }}</td>
                 </tr>
 
                 <tr>
                     <td>{{ Form::label('category_id', 'ประเภทสินค้า ') }}</td>
                     <td>{{ Form::select('category_id', $categories, Request::old('category_id'), ['class' => 'form-control']) }}
+                    </td>
                 </tr>
 
                 <tr>
                     <td>{{ Form::label('stock_qty', 'คงเหลือ') }}</td>
-                    <td>{{ Form::text('stock_qty', $product->stock_qty, ['class' => 'form-control']) }} </td>
+                    <td>{{ Form::text('stock_qty', Request::old('stock_qty'), ['class' => 'form- control']) }}</td>
                 </tr>
+
                 <tr>
-                    <td>{{ Form::label('price', 'ราคาขายต่อหน่วย') }}</td>
-                    <td>{{ Form::text('price', $product->price, ['class' => 'form-control']) }}</td>
+                    <td>{{ Form::label('price', 'ราคาขายต่อ หน่วย') }}</td>
+                    <td>{{ Form::text('price', Request::old('price'), ['class' => 'form-control']) }}</td>
                 </tr>
 
                 <tr>
                     <td>{{ Form::label('image', 'เลือกรูปภาพสินค้า ') }}</td>
                     <td>{{ Form::file('image') }}</td>
                 </tr>
-
-                @if ($product->image_url)
-                    <tr>
-                        <td><strong>รูปสินค้า </strong></td>
-                        <td><img src="{{ URL::to($product->image_url) }}" width="100px"></td>
-                    </tr>
-                @endif
+                </tr>
 
             </table>
             <br>

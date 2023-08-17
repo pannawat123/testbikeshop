@@ -32,10 +32,7 @@
 
         <div class="panel-body">
             <table>
-                <tr>
-                    <td> {{ Form::label('id', 'รหัสประเภท') }}</td>
-                    <td> {{ Form::text('id', $category->id, ['class' => 'form-control']) }}</td>
-                </tr>
+              
 
                 <tr>
                     <td> {{ Form::label('name', 'ชื่อสินค้า') }}</td>

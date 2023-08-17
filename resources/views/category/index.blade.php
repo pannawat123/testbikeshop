@@ -10,6 +10,7 @@
             </div>
         </div>
     <div class="panel-body">
+        <a href="{{ URL::to('category/edit') }}" class="btn btn-success pull-right">เพิ่มสินค้า</a>
         <form action="{{URL::to('category/search') }}" method="post" class="form-inline">
         {{ csrf_field() }}
             <input type="text" name="q" class="form-control" placeholder="พิมพ์รหัสหรือชื่อเพื่อค้นหา">
@@ -31,7 +32,8 @@
                     <td> {{$c->name }} </td>
                     <td class="bs-center">
                         <a href="{{URL::to('category/edit/'.$c->id)}}" class="btn btn-info"> <i class="fa fa-edit"></i> แก้ไข</a>
-                        <a href="" class="btn btn-danger"> <i class="fa fa-trash"></i> ลบ</a>
+                        <a href="#" class="btn btn-danger btn-delete" id-delete="{{$c->id}}">
+                            <i class="fa fa-trash"></i> ลบ</a>
                     </td>
                 
                 </tr> @endforeach
@@ -48,4 +50,16 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function () {
+        $('.btn-delete').click(function () {
+            var id = $(this).attr('id-delete');
+            if (confirm('คุณต้องการลบข้อมูลใช่หรือไม่')) {
+                window.location.href = '/category/remove/' + id;
+            }
+        });
+    });
+
+</script>
 @endsection
