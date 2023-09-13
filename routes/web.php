@@ -19,6 +19,10 @@ Route::get('/', function () {
     return view('layouts.master');
 });
 
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+
 Route::get('/product', [App\Http\Controllers\ProductController::class, 'index']);
 Route::get('/product/search', [App\Http\Controllers\ProductController::class, 'search']);
 Route::post('/product/search', [App\Http\Controllers\ProductController::class, 'search']);

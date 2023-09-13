@@ -13,6 +13,7 @@
     <script src="{{ asset('vendor/bootstrap/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/jquery-3.7.0.min.js') }}"></script>
     <script src="{{ asset('vendor/toastr/toastr.min.js') }}"></script>
+    <script src="{{ asset('js/angular.min.js') }}"></script>
 </head>
 <center>
     <h1> นายปัณณวัฒน์ อิ่มศิลป์ 6406021620106 </h1>
@@ -26,7 +27,7 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="#">หน้าแรก</a></li>
+                    <li><a href="{{URL::to('home')}}">หน้าแรก</a></li>
                     <li><a href="{{URL::to('product')}}">ข้อมูลสินค้า</a></li>
                     <li><a href="{{URL::to('category')}}">ข้อมูลประเภทสินค้า</a></li>
                     <li><a href="#">รายงาน</a></li>
