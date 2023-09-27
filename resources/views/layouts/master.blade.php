@@ -19,6 +19,7 @@
     <h1> นายปัณณวัฒน์ อิ่มศิลป์ 6406021620106 </h1>
 
 </center>
+
 <body>
     <div class="container">
         <nav class="navbar navbar-default navbar-static-top">
@@ -27,16 +28,22 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="{{URL::to('home')}}">หน้าแรก</a></li>
-                    <li><a href="{{URL::to('product')}}">ข้อมูลสินค้า</a></li>
-                    <li><a href="{{URL::to('category')}}">ข้อมูลประเภทสินค้า</a></li>
+                    <li><a href="{{ URL::to('home') }}">หน้าแรก</a></li>
+                    <li><a href="{{ URL::to('product') }}">ข้อมูลสินค้า</a></li>
+                    <li><a href="{{ URL::to('category') }}">ข้อมูลประเภทสินค้า</a></li>
                     <li><a href="#">รายงาน</a></li>
+
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#"><i class="fa fa-shopping-cart"></i> ตะกร้า
+                            <span class="label label-danger">
+                                {!! count(Session::get('cart_items')) !!}</span></a></li>
                 </ul>
             </div>
-        </nav> 
+        </nav>
         @yield('content')
         @if (session('msg'))
-            @if(session('ok'))
+            @if (session('ok'))
                 <script>
                     toastr.success('{{ session('msg') }}');
                 </script>
