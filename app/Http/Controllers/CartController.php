@@ -53,8 +53,11 @@ class CartController extends Controller
 
     public function updateCart($id, $qty)
     {
+        $product = Product::find($id);
+
         $cart_items = Session::get('cart_items');
         $cart_items[$id]['qty'] = $qty;
+        $cart_items[$id]['price'] = $qty * $product->price;
         Session::put('cart_items', $cart_items);
         return redirect('cart/view');
     }

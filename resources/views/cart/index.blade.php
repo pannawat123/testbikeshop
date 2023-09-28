@@ -19,7 +19,8 @@
                             <th>รหัส</th>
                             <th>ชื่อสินค้า </th>
                             <th>จํานวน</th>
-                            <th>ราคา</th>
+                            <th>ราคาต่อชิ้น</th>
+                            <th>ราคารวม</th>
                             <th width="50px"></th>
                         </tr>
                     </thead>
@@ -33,9 +34,12 @@
                                         onKeyUp="updateCart({{ $c['id'] }}, this)"></td>
                                 <td>{{ number_format($c['price'], 0) }}</td>
 
+                                <td>{{ number_format($c['price'] * $c['qty'], 0) }}</td>
+
                                 <td>
                                     <a href="{{ URL::to('cart/delete/' . $c['id']) }}" class="btn btn-danger">
                                         <i class="fa fa-times"></i></a>
+
                                 </td>
 
                             </tr>
@@ -47,8 +51,8 @@
                         <tr>
                             <th colspan="3">รวม</th>
                             <th>{{ number_format($sum_qty, 0) }}</th>
-                            <th>{{ number_format($sum_price, 0) }}</th>
                             <th></th>
+                            <th>{{ number_format($sum_price , 0) }}</th>
                         </tr>
                     </tfoot>
                 </table>

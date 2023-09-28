@@ -36,9 +36,9 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="#"><i class="fa fa-shopping-cart"></i> ตะกร้า
-                            <span class="label label-danger">
-                                {!! count(Session::get('cart_items')) !!}</span></a></li>
-                </ul>
+                    <span class="label label-danger">
+                    {!! count(Session::get('cart_items')) !!}</span></a></li>
+                    </ul>
             </div>
         </nav>
         @yield('content')
