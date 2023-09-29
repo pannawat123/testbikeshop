@@ -32,9 +32,13 @@
                                 <td>{{ $c['name'] }}</td>
                                 <td><input type="text" class="form-control" value="{{ $c['qty'] }}"
                                         onKeyUp="updateCart({{ $c['id'] }}, this)"></td>
-                                <td>{{ number_format($c['price'], 0) }}</td>
-
+                                
+                                
+                                <td class="bs-price">{{ number_format($c['price'], 0) }}</td>
+                                
                                 <td>{{ number_format($c['price'] * $c['qty'], 0) }}</td>
+
+                                
 
                                 <td>
                                     <a href="{{ URL::to('cart/delete/' . $c['id']) }}" class="btn btn-danger">
