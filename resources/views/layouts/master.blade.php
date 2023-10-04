@@ -37,8 +37,14 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="#"><i class="fa fa-shopping-cart"></i> ตะกร้า
                     <span class="label label-danger">
-                    {!! count(Session::get('cart_items')) !!}</span></a></li>
+                    @if (Session::has('cart_items'))
+                        {!! count(Session::get('cart_items')) !!}</span></a></li>
+                    @else
+                        {{count(array())}}
+                    @endif
             </div>
+
+
         </nav>
         @yield('content')
         @if (session('msg'))
