@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
-use Session;
+use Illuminate\Support\Facades\Session;
 
 
 class CartController extends Controller

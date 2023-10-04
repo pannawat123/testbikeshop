@@ -46,6 +46,3 @@ Route::get('/cart/add/{id}', [App\Http\Controllers\CartController::class, 'addTo
 Route::get('/cart/delete/{id}', [App\Http\Controllers\CartController::class, 'deleteCart']);
 Route::get('/cart/update/{id}/{qty}', [App\Http\Controllers\CartController::class, 'updateCart']);
 
-Route::middleware([CartMiddleware::class])->group(function(){
-    Route::get('/cart/update/{id}/{qty}', [CartController::class, 'updateCart']);
-});
